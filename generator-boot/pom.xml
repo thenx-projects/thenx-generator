@@ -12,7 +12,7 @@
     <artifactId>generator-boot</artifactId>
     <name>generator-boot</name>
     <packaging>jar</packaging>
-    <description>thnex-generator 入口发布模块</description>
+    <description>thenx-generator 入口发布模块</description>
 
 
 </project>

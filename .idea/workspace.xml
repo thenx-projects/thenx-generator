@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1b051ab2-eb68-491f-9f83-02cec0583e3a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator-boot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/generator-boot/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576812416055</updated>
-      <workItem from="1576812419339" duration="3484000" />
+      <workItem from="1576812419339" duration="4416000" />
     </task>
     <task id="LOCAL-00001" summary="init: 初始化thenx逆向生成工程项目">
       <created>1576813400522</created>
@@ -84,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576817929870</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: 未上传">
+      <created>1576823065713</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576823065713</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,25 +101,26 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init: 初始化thenx逆向生成工程项目" />
     <MESSAGE value="add: 添加README" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: 添加README" />
+    <MESSAGE value="fix: 未上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 未上传" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="27" key="#Project_Structure" timestamp="1576813286190">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1576813286190" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1576817928673">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1576824292284">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1576817928673" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1576824292284" />
     <state x="463" y="110" key="FileChooserDialogImpl" timestamp="1576813360292">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="110" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1576813360292" />
-    <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1576817941085">
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1576823069269">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1576817941085" />
+    <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1576823069269" />
     <state x="57" y="0" key="new project wizard" timestamp="1576813656752">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
