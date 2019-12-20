@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.thenx.generator</groupId>
+    <artifactId>thenx-generator</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <modules>
+        <module>generator-config</module>
+        <module>generator-plugins</module>
+        <module>generator-boot</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 配置模块 -->
+            <dependency>
+                <groupId>org.thenx.generator.config</groupId>
+                <artifactId>generator-config</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- 插件模块 -->
+            <dependency>
+                <groupId>org.thenx.generator.plugins</groupId>
+                <artifactId>generator-plugins</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- 启动入口模块 -->
+            <dependency>
+                <groupId>org.thenx.generator.boot</groupId>
+                <artifactId>generator-boot</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
