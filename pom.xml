@@ -41,5 +41,90 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.13</version>
+                <configuration>
+                    <!-- config for license:aggregate-add-third-party -->
+                    <outputDirectory>${project.basedir}</outputDirectory>
+                    <thirdPartyFilename>LICENSE-3RD-PARTY</thirdPartyFilename>
+                    <fileTemplate>/org/codehaus/mojo/license/third-party-file-groupByLicense.ftl</fileTemplate>
+                    <useMissingFile>true</useMissingFile>
+                    <missingFile>${project.basedir}/LICENSE-3RD-PARTY.properties</missingFile>
+                    <aggregateMissingLicensesFile>${project.basedir}/LICENSE-3RD-PARTY.properties
+                    </aggregateMissingLicensesFile>
+                    <licenseMerges>
+                        <licenseMerge>Apache 2.0|ASL, version
+                            2|http://www.apache.org/licenses/LICENSE-2.0.txt|http://asm.ow2.org/license.html|The Apache
+                            License, Version 2.0|Apache License|Apache License Version 2|Apache License Version
+                            2.0|Apache Software License - Version 2.0|Apache 2.0 License|Apache License 2.0|ASL|Apache
+                            2|Apache-2.0|the Apache License, ASL Version 2.0|The Apache Software License, Version
+                            2.0|Apache License, Version 2.0|Apache Public License 2.0
+                        </licenseMerge>
+                    </licenseMerges>
+
+                    <!-- config for license:aggregate-download-licenses -->
+                    <aggregateDownloadLicenses.executeOnlyOnRootModule>true
+                    </aggregateDownloadLicenses.executeOnlyOnRootModule>
+                    <!--<licensesConfigFile>${main.basedir}/lic/config/licenses.xml</licensesConfigFile>-->
+                    <licensesOutputFile>${project.basedir}/lic/licenses.xml</licensesOutputFile>
+                    <licensesOutputDirectory>${project.basedir}/lic/licenses/</licensesOutputDirectory>
+
+                    <!-- config for license:update-file-header -->
+                    <licenseName>apache_v2</licenseName>
+                    <inceptionYear>2019</inceptionYear>
+                    <organizationName>thenx</organizationName>
+                    <projectName>log-monitor</projectName>
+                    <roots>
+                        <root>src/main/java</root>
+                        <root>src/test/java</root>
+                        <root>src/main/resources</root>
+                        <root>./</root>
+                    </roots>
+                    <includes>
+                        <include>**/*.java</include>
+                        <include>**/*.xml</include>
+                        <include>**/*.sh</include>
+                        <include>**/*.py</include>
+                        <include>**/*.properties</include>
+                        <include>**/*.sql</include>
+                        <include>**/*.html</include>
+                        <include>**/*.less</include>
+                        <include>**/*.css</include>
+                        <include>**/*.js</include>
+                        <include>**/*.json</include>
+                        <include>**/*.yml</include>
+                        <include>*.xml</include>
+                    </includes>
+                    <canUpdateCopyright>true</canUpdateCopyright>
+                    <canUpdateDescription>true</canUpdateDescription>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <emptyLineAfterHeader>true</emptyLineAfterHeader>
+                    <processStartTag>&lt;&lt;</processStartTag>
+                    <processEndTag>&gt;&gt;</processEndTag>
+                    <sectionDelimiter>&gt;</sectionDelimiter>
+
+                    <!-- config for mvn license:update-project-license -->
+                    <licenseFile>${project.basedir}/LICENSE</licenseFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jasig.maven</groupId>
+                <artifactId>maven-notice-plugin</artifactId>
+                <version>1.0.6.1</version>
+                <configuration>
+                    <generateChildNotices>false</generateChildNotices>
+                    <noticeTemplate>https://source.jasig.org/licenses/NOTICE.template</noticeTemplate>
+                    <licenseMapping>
+                        <param>https://source.jasig.org/licenses/license-mappings.xml</param>
+                    </licenseMapping>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
