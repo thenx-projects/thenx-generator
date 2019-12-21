@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+    <properties resource="thenx-generator.properties"/>
+    <!-- 把路径换成自己的 现在是相对路径了-->
+    <classPathEntry
+            location="${local_jdbc}"/>
+    <context id="context1">
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 开启对 Lombok 的支持 -->
+        <plugin type="org.thenx.generator.AnnotationConfig" >
+            <property name="hasLombok" value="true"/>
+        </plugin>
+
+        <!-- 注释 -->
+        <commentGenerator type="org.thenx.generator.GeneratorConfig">
+            <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+
+            <property name="useInformationSchema" value="true"/>
+            <property name="remarks" value="true"/>
+
+        </jdbcConnection>
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${modelPackage}"
+                            targetProject="${modelProject}"/>
+        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}"/>
+        <javaClientGenerator targetPackage="${mapperPackage}"
+                             targetProject="${mapperProject}" type="XMLMAPPER"/>
+
+        <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
+        <table schema="" tableName="${table}"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+        >
+        	<property name="useActualColumnNames" value="false" />
+        </table>
+
+    </context>
+</generatorConfiguration>
