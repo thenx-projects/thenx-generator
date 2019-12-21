@@ -34,5 +34,13 @@
     <packaging>jar</packaging>
     <description>thenx-generator 插件模块</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>generator-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
