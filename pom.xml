@@ -96,7 +96,7 @@
 
                     <!-- config for license:update-file-header -->
                     <licenseName>apache_v2</licenseName>
-                    <inceptionYear>2019</inceptionYear>
+                    <inceptionYear>2020</inceptionYear>
                     <organizationName>thenx</organizationName>
                     <projectName>thenx-generator</projectName>
                     <roots>
