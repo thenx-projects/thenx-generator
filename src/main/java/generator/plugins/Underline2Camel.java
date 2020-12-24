@@ -1,29 +1,17 @@
+package generator.plugins;
 
-
-/*
- *    Copyright 2012-2021 the original author or authors.
+/**
+ * @author May
  *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * 获取表名，转换成驼峰命名，同时还需要首字母大写
+ * 这个方法的目的是为了判断生成的表实体中是否有extends关键字，或者说是否继承了由多索引组成的父类实体
  */
-
-package org.thenx.generator;
-
 public class Underline2Camel {
 
     public static String underline2Camel(String line, boolean... firstIsUpperCase) {
         String str = "";
 
-        if (null == line) {
+        if (line == null || line.isEmpty()) {
             return str;
         } else {
             StringBuilder sb = new StringBuilder();
