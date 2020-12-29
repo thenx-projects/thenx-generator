@@ -6,7 +6,7 @@
     <properties resource="generator.yml"/>
     <!-- 把路径换成自己的 现在是相对路径了-->
     <classPathEntry
-            location="${connector}"/>
+            location="${thenx.target.connector}"/>
     <context id="context1">
         <property name="javaFileEncoding" value="UTF-8"/>
 
@@ -20,10 +20,10 @@
             <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳 -->
         </commentGenerator>
 
-        <jdbcConnection driverClass="${driver}"
-                        connectionURL="${url}"
-                        userId="${username}"
-                        password="${password}">
+        <jdbcConnection driverClass="${thenx.driver}"
+                        connectionURL="${thenx.url}"
+                        userId="${thenx.username}"
+                        password="${thenx.password}">
 
             <property name="useInformationSchema" value="true"/>
             <property name="remarks" value="true"/>
@@ -35,14 +35,14 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="${entity.package}"
-                            targetProject="${entity.project}"/>
-        <sqlMapGenerator targetPackage="${mapper.package}" targetProject="${mapper.project}"/>
-        <javaClientGenerator targetPackage="${dao.package}"
-                             targetProject="${dao.project}" type="XMLMAPPER"/>
+        <javaModelGenerator targetPackage="${thenx.entity.package}"
+                            targetProject="${thenx.entity.project}"/>
+        <sqlMapGenerator targetPackage="${thenx.mapper.package}" targetProject="${thenx.mapper.project}"/>
+        <javaClientGenerator targetPackage="${thenx.dao.package}"
+                             targetProject="${thenx.dao.project}" type="XMLMAPPER"/>
 
         <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
-        <table schema="" tableName="${table}"
+        <table schema="" tableName="${thenx.target.table}"
                enableSelectByPrimaryKey="true"
                enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true"
