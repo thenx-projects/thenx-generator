@@ -5,20 +5,20 @@ username: t1
 password: 1002love613.
 
 # 2. jdbc -connector libs/*.jar
-local_jdbc: libs/mssql-jdbc-8.2.2.jre8.jar
+connector: libs/mssql-jdbc-8.2.2.jre8.jar
 
 # 3. table name
 table: user_info
 
 # 4. entity
-modelPackage: org.thenx.entity
-modelProject: src/main/java
+entity.package: org.thenx.entity
+entity.project: src/main/java
 
 # 5. dao
-mapperPackage: org.thenx.dao
-mapperProject: src/main/java
+dao.package: org.thenx.dao
+dao.project: src/main/java
 
 # 6. mapper
-sqlPackage: mapper
-sqlProject: src/main/resources
+mapper.package: mapper
+mapper.project: src/main/resources
 

@@ -6,7 +6,7 @@
     <properties resource="generator.yml"/>
     <!-- 把路径换成自己的 现在是相对路径了-->
     <classPathEntry
-            location="${local_jdbc}"/>
+            location="${connector}"/>
     <context id="context1">
         <property name="javaFileEncoding" value="UTF-8"/>
 
@@ -35,11 +35,11 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="${modelPackage}"
-                            targetProject="${modelProject}"/>
-        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}"/>
-        <javaClientGenerator targetPackage="${mapperPackage}"
-                             targetProject="${mapperProject}" type="XMLMAPPER"/>
+        <javaModelGenerator targetPackage="${entity.package}"
+                            targetProject="${entity.project}"/>
+        <sqlMapGenerator targetPackage="${mapper.package}" targetProject="${mapper.project}"/>
+        <javaClientGenerator targetPackage="${dao.package}"
+                             targetProject="${dao.project}" type="XMLMAPPER"/>
 
         <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
         <table schema="" tableName="${table}"
