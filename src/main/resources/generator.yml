@@ -1,24 +1,24 @@
 # 1. db info
-driver: com.mysql.cj.jdbc.Driver
-url: jdbc:mysql://localhost:3306/testify?useUnicode=true&characterEncoding=utf8
-username: t1
-password: 1002love613.
+thenx.driver: com.mysql.cj.jdbc.Driver
+thenx.url: jdbc:mysql://localhost:3306/testify?useUnicode=true&characterEncoding=utf8
+thenx.username: t1
+thenx.password: 1002love613.
 
 # 2. jdbc -connector libs/*.jar
-local_jdbc: libs/mssql-jdbc-8.2.2.jre8.jar
+thenx.target.connector: libs/mssql-jdbc-8.2.2.jre8.jar
 
 # 3. table name
-table: user_info
+thenx.target.table: user_info
 
 # 4. entity
-modelPackage: org.thenx.entity
-modelProject: src/main/java
+thenx.entity.package: org.thenx.entity
+thenx.entity.project: src/main/java
 
 # 5. dao
-mapperPackage: org.thenx.dao
-mapperProject: src/main/java
+thenx.dao.package: org.thenx.dao
+thenx.dao.project: src/main/java
 
 # 6. mapper
-sqlPackage: mapper
-sqlProject: src/main/resources
+thenx.mapper.package: mapper
+thenx.mapper.project: src/main/resources
 
