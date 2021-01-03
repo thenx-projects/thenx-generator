@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--导入属性配置 -->
-    <properties resource="generator.yml"/>
+    <properties resource="generator.properties"/>
     <!-- 把路径换成自己的 现在是相对路径了-->
     <classPathEntry
             location="${thenx.target.connector}"/>
