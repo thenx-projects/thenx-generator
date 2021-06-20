@@ -27,12 +27,12 @@
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 开启对 Lombok 的支持 -->
-        <plugin type="generator.plugins.AnnotationConfig" >
+        <plugin type="org.thenx.plugins.AnnotationConfig" >
             <property name="hasLombok" value="true"/>
         </plugin>
 
         <!-- 注释 -->
-        <commentGenerator type="generator.config.GeneratorConfig">
+        <commentGenerator type="org.thenx.config.GeneratorConfig">
             <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳 -->
         </commentGenerator>
 

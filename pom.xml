@@ -20,8 +20,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.thenx</groupId>
     <artifactId>thenx-generator</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>thenx-generatorr</name>
+    <modules>
+        <module>thenx-generator-config</module>
+        <module>thenx-generator-plugins</module>
+        <module>thenx-generator-boot</module>
+        <module>thenx-generator-tests</module>
+    </modules>
+    <name>thenx-generator</name>
     <description>快速生成 Entity、Mapper、SQL等通用型操作</description>
 
     <properties>
@@ -44,41 +51,37 @@
     </repositories>
 
     <dependencies>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.22</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.7</version>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.thenx</groupId>
+                <artifactId>thenx-generator-boot</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.thenx</groupId>
+                <artifactId>thenx-generator-config</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.thenx</groupId>
+                <artifactId>thenx-generator-plugins</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.thenx</groupId>
+                <artifactId>thenx-generator-tests</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
