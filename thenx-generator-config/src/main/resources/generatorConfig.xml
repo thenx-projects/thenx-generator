@@ -27,7 +27,7 @@
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!-- 开启对 Lombok 的支持 -->
-        <plugin type="org.thenx.plugins.AnnotationConfig" >
+        <plugin type="org.thenx.plugins.annotation.AnnotationConfig" >
             <property name="hasLombok" value="true"/>
         </plugin>
 

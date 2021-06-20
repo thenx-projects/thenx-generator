@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.thenx.plugins;
+package org.thenx.plugins.camel;
 
 /**
  * @author May
