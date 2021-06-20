@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package generator.config;
+package org.thenx.config;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;

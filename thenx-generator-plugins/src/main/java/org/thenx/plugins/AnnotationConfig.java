@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package generator.plugins;
+package org.thenx.plugins;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;

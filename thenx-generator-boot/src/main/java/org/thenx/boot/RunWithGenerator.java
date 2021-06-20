@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package generator;
+package org.thenx.boot;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
