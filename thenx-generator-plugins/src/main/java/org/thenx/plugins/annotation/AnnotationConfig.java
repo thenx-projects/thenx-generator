@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author May
+ * @author wales
  * <p>
  * 自定义一个插件，用于第三方扩展
  */
@@ -41,8 +41,8 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 开启验证
      *
-     * @param list
-     * @return null
+     * @param list {@link List}
+     * @return {@link Boolean}
      */
     @Override
     public boolean validate(List<String> list) {
@@ -53,21 +53,19 @@ public class AnnotationConfig extends PluginAdapter {
      * 添加 Lombok 扩展
      * 这里的扩展不包含父类实体，但是需要单独处理 Lombok带来的BUG
      *
-     * @param topLevelClass
-     * @param introspectedTable
-     * @return null
+     * @param topLevelClass     {@link TopLevelClass}
+     * @param introspectedTable {@link IntrospectedTable}
+     * @return {@link Boolean}
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         boolean present = isPresent(introspectedTable);
         String entityFullName = Underline2Camel.underline2Camel(introspectedTable.getFullyQualifiedTable().toString(), true);
         if (present) {
-            boolean assignableFrom = entityFullName.getClass().isAssignableFrom((entityFullName + "Key").getClass());
-            if (assignableFrom) {
-                // 这个注解主要是处理 Lombok 的继承父类实体BUG
-                topLevelClass.addImportedType("lombok.EqualsAndHashCode");
-                topLevelClass.addAnnotation("@EqualsAndHashCode(callSuper = true)");
-            }
+            entityFullName.getClass().isAssignableFrom((entityFullName + "Key").getClass());
+            // 这个注解主要是处理 Lombok 的继承父类实体BUG
+            topLevelClass.addImportedType("lombok.EqualsAndHashCode");
+            topLevelClass.addAnnotation("@EqualsAndHashCode(callSuper = true)");
         }
         return true;
     }
@@ -75,8 +73,8 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 判断索引字段
      *
-     * @param introspectedTable
-     * @return null
+     * @param introspectedTable {@link IntrospectedTable}
+     * @return {@link Boolean}
      */
     private static boolean isPresent(IntrospectedTable introspectedTable) {
         return introspectedTable.getPrimaryKeyColumns().size() > 1;
@@ -85,8 +83,8 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 判断索引父类是否存在
      *
-     * @param name
-     * @return null
+     * @param name {@link String}
+     * @return {@link Boolean}
      */
     private static boolean isPresents(String name) {
         try {
@@ -100,10 +98,10 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 给 DAO 一个明明白白的注释
      *
-     * @param interfaze
-     * @param topLevelClass
-     * @param introspectedTable
-     * @return null
+     * @param interfaze         {@link Interface}
+     * @param topLevelClass     {@link TopLevelClass}
+     * @param introspectedTable {@link IntrospectedTable}
+     * @return {@link Boolean}
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -124,12 +122,12 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 取消 GETTER
      *
-     * @param method
-     * @param topLevelClass
-     * @param introspectedColumn
-     * @param introspectedTable
-     * @param modelClassType
-     * @return null
+     * @param method             {@link Method}
+     * @param topLevelClass      {@link TopLevelClass}
+     * @param introspectedColumn {@link IntrospectedColumn}
+     * @param introspectedTable  {@link IntrospectedTable}
+     * @param modelClassType     {@link org.mybatis.generator.api.Plugin.ModelClassType}
+     * @return {@link Boolean}
      */
     @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
@@ -139,12 +137,12 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 取消 SETTER
      *
-     * @param method
-     * @param topLevelClass
-     * @param introspectedColumn
-     * @param introspectedTable
-     * @param modelClassType
-     * @return null
+     * @param method             {@link Method}
+     * @param topLevelClass      {@link TopLevelClass}
+     * @param introspectedColumn {@link IntrospectedColumn}
+     * @param introspectedTable  {@link IntrospectedTable}
+     * @param modelClassType     {@link org.mybatis.generator.api.Plugin.ModelClassType}
+     * @return {@link Boolean}
      */
     @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn, IntrospectedTable introspectedTable, ModelClassType modelClassType) {
@@ -154,8 +152,8 @@ public class AnnotationConfig extends PluginAdapter {
     /**
      * 格式化时间日期
      *
-     * @param date
-     * @return null
+     * @param date {@link Date}
+     * @return {@link String}
      */
     private String date2Str(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
