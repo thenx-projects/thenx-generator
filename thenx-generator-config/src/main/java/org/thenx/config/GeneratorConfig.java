@@ -23,6 +23,7 @@ import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.PropertyRegistry;
+import org.thenx.config.entity.GeneratorEntity;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -34,59 +35,35 @@ import java.util.Set;
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 /**
- * @author May
+ * @author wales
  * <p>
  * 加强 MyBatis的逆向功能
  */
 public class GeneratorConfig implements CommentGenerator {
 
-    /**
-     * properties 配置文件
-     */
-    private Properties properties;
-
-    /**
-     * properties 配置文件
-     */
-    private Properties systemPro;
-
-    /*
-     * 父类时间
-     */
-    private boolean suppressDate;
-
-    /**
-     * 父类所有注释
-     */
-    private boolean suppressAllComments;
-
-    /**
-     * 当前时间
-     */
-    private String currentDateStr;
+    private final GeneratorEntity generatorEntity = new GeneratorEntity();
 
     /**
      * 构造赋值
      */
     public GeneratorConfig() {
         super();
-        properties = new Properties();
-        systemPro = System.getProperties();
-        suppressDate = false;
-        suppressAllComments = false;
-        currentDateStr = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"))
-                .format(Calendar.getInstance().getTime());
+        generatorEntity.setSystemPro(System.getProperties());
+        generatorEntity.setSuppressDate(false);
+        generatorEntity.setSuppressAllComments(false);
+        generatorEntity.setCurrentDateStr((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"))
+                .format(Calendar.getInstance().getTime()));
     }
 
     /**
      * 格式化日期字符串以包含在Javadoc标记和XML注释
      *
-     * @return null
+     * @return {@link String}
      */
     protected String getDateString() {
         String result = null;
-        if (!suppressDate) {
-            result = currentDateStr;
+        if (!generatorEntity.isSuppressDate()) {
+            result = generatorEntity.getCurrentDateStr();
         }
         return result;
     }
@@ -94,25 +71,25 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 从该配置中的任何属性添加此实例的属性CommentGenerator配置
      *
-     * @param properties
+     * @param properties {@link Properties}
      */
     @Override
     public void addConfigurationProperties(Properties properties) {
-        this.properties.putAll(properties);
-        suppressDate = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_DATE));
-        suppressAllComments = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS));
+        generatorEntity.setPro(properties);
+        generatorEntity.setSuppressDate(isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_DATE)));
+        generatorEntity.setSuppressAllComments(isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS)));
     }
 
     /**
      * 为字段添加注释
      *
-     * @param field
-     * @param introspectedTable
-     * @param introspectedColumn
+     * @param field              {@link Field}
+     * @param introspectedTable  {@link IntrospectedTable}
+     * @param introspectedColumn {@link IntrospectedColumn}
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -120,7 +97,7 @@ public class GeneratorConfig implements CommentGenerator {
         sb.append(" * ");
         if (introspectedColumn.getRemarks() == null || introspectedColumn.getRemarks().isEmpty()) {
             try {
-                sb.append(" 作者：").append(InetAddress.getLocalHost().getHostName());
+                sb.append(" 作者: ").append(InetAddress.getLocalHost().getHostName());
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }
@@ -134,12 +111,12 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * Java属性注释
      *
-     * @param field
-     * @param introspectedTable
+     * @param field             {@link Field}
+     * @param introspectedTable {@link IntrospectedTable}
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -154,12 +131,12 @@ public class GeneratorConfig implements CommentGenerator {
      * entity 类上添加注释
      * 这里是同时包含了父子类的实体，但是这里需要单独处理父类的注解
      *
-     * @param topLevelClass
-     * @param introspectedTable
+     * @param topLevelClass     {@link TopLevelClass}
+     * @param introspectedTable {@link IntrospectedTable}
      */
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         // 父类必要的包
@@ -190,12 +167,12 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * Java类的类注释
      *
-     * @param innerClass
-     * @param introspectedTable
+     * @param innerClass        {@link InnerClass}
+     * @param introspectedTable {@link IntrospectedTable}
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         innerClass.addJavaDocLine("/**");
@@ -212,13 +189,13 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 类级别注释
      *
-     * @param innerClass
-     * @param introspectedTable
-     * @param b
+     * @param innerClass        {@link InnerClass}
+     * @param introspectedTable {@link IntrospectedTable}
+     * @param b                 flag
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean b) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         innerClass.addJavaDocLine("/**");
@@ -235,13 +212,13 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 为枚举添加注释
      *
-     * @param innerEnum
-     * @param introspectedTable
+     * @param innerEnum         {@link InnerEnum}
+     * @param introspectedTable {@link IntrospectedTable}
      */
     @Override
     public void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable) {
         StringBuilder sb = new StringBuilder();
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         innerEnum.addJavaDocLine("/**");
@@ -254,9 +231,9 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * GETTER 我觉得没必要了，因为我们用了Lombok
      *
-     * @param method
-     * @param introspectedTable
-     * @param introspectedColumn
+     * @param method             {@link Method}
+     * @param introspectedTable  {@link IntrospectedTable}
+     * @param introspectedColumn {@link IntrospectedColumn}
      */
     @Override
     public void addGetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
@@ -266,9 +243,9 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 同样的， SETTER同样的没什么用了
      *
-     * @param method
-     * @param introspectedTable
-     * @param introspectedColumn
+     * @param method             {@link Method}
+     * @param introspectedTable  {@link IntrospectedTable}
+     * @param introspectedColumn {@link IntrospectedColumn}
      */
     @Override
     public void addSetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
@@ -278,12 +255,12 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 普通方法的注释，这里主要是 DAO 里面的接口方法的注释
      *
-     * @param method
-     * @param introspectedTable
+     * @param method            {@link Method}
+     * @param introspectedTable {@link IntrospectedTable}
      */
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
+        if (generatorEntity.isSuppressAllComments()) {
             return;
         }
         method.addJavaDocLine("/**");
@@ -306,7 +283,7 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 给Java文件加注释，这个注释是在文件的顶部，也就是package上面
      *
-     * @param compilationUnit
+     * @param compilationUnit {@link CompilationUnit}
      */
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
@@ -316,11 +293,11 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * Mybatis的Mapper.xml文件里面的注释
      *
-     * @param xmlElement
+     * @param xmlElement {@link XmlElement}
      */
     @Override
     public void addComment(XmlElement xmlElement) {
-        if (!this.suppressAllComments) {
+        if (!generatorEntity.isSuppressAllComments()) {
             xmlElement.addElement(new TextElement("<!--"));
             StringBuilder sb = new StringBuilder();
             sb.append(xmlElement.getName()).append("语句操作").append("\n");
@@ -341,7 +318,7 @@ public class GeneratorConfig implements CommentGenerator {
     /**
      * 为调用此方法作为根元素的第一个子节点添加注释
      *
-     * @param xmlElement
+     * @param xmlElement {@link XmlElement}
      */
     @Override
     public void addRootComment(XmlElement xmlElement) {

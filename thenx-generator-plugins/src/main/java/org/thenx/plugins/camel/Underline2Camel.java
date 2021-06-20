@@ -17,8 +17,8 @@
 package org.thenx.plugins.camel;
 
 /**
- * @author May
- *
+ * @author wales
+ * <p>
  * 获取表名，转换成驼峰命名，同时还需要首字母大写
  * 这个方法的目的是为了判断生成的表实体中是否有extends关键字，或者说是否继承了由多索引组成的父类实体
  */
@@ -39,11 +39,10 @@ public class Underline2Camel {
             } else if (!line.contains("_") && firstIsUpperCase.length != 0) {
                 if (!firstIsUpperCase[0]) {
                     sb.append(line.substring(0, 1).toLowerCase()).append(line.substring(1));
-                    str = sb.toString();
                 } else {
                     sb.append(line.substring(0, 1).toUpperCase()).append(line.substring(1));
-                    str = sb.toString();
                 }
+                str = sb.toString();
             } else if (line.contains("_") && firstIsUpperCase.length == 0) {
                 strArr = line.split("_");
                 for (String s : strArr) {
