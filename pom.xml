@@ -103,9 +103,19 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.thenx.boot.RunWithGenerator</mainClass>
+                                    <mainClass>org.thenx.boot.GeneratorBoot</mainClass>
                                 </transformer>
                             </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>**/*.yml</exclude>
+<!--                                        <exclude>**/generator.properties</exclude>-->
+                                        <exclude>thenx-generator-tests</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
