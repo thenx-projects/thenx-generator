@@ -154,14 +154,14 @@ public class GeneratorConfig implements CommentGenerator {
 
         topLevelClass.addJavaDocLine("/**");
         try {
-            topLevelClass.addJavaDocLine("* @author " + InetAddress.getLocalHost().getHostName());
+            topLevelClass.addJavaDocLine(" * @author " + InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        topLevelClass.addJavaDocLine("* <p>");
-        topLevelClass.addJavaDocLine("* " + introspectedTable.getRemarks() + "实体");
-        topLevelClass.addJavaDocLine("* @date " + Calendar.getInstance().getTime());
-        topLevelClass.addJavaDocLine("*/");
+        topLevelClass.addJavaDocLine(" * <p>");
+        topLevelClass.addJavaDocLine(" * " + introspectedTable.getRemarks() + "实体");
+        topLevelClass.addJavaDocLine(" * @date " + Calendar.getInstance().getTime());
+        topLevelClass.addJavaDocLine(" */");
     }
 
     /**
@@ -176,14 +176,14 @@ public class GeneratorConfig implements CommentGenerator {
             return;
         }
         innerClass.addJavaDocLine("/**");
-        innerClass.addJavaDocLine("* ");
+        innerClass.addJavaDocLine(" * ");
         try {
-            innerClass.addJavaDocLine("* @author " + InetAddress.getLocalHost().getHostName());
+            innerClass.addJavaDocLine(" * @author " + InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        innerClass.addJavaDocLine("* @date " + getDateString());
-        innerClass.addJavaDocLine("*/");
+        innerClass.addJavaDocLine(" * @date " + getDateString());
+        innerClass.addJavaDocLine(" */");
     }
 
     /**
@@ -199,14 +199,14 @@ public class GeneratorConfig implements CommentGenerator {
             return;
         }
         innerClass.addJavaDocLine("/**");
-        innerClass.addJavaDocLine("*");
+        innerClass.addJavaDocLine(" *");
         try {
-            innerClass.addJavaDocLine("* @author " + InetAddress.getLocalHost().getHostName());
+            innerClass.addJavaDocLine(" * @author " + InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        innerClass.addJavaDocLine("* @date " + getDateString());
-        innerClass.addJavaDocLine("*/");
+        innerClass.addJavaDocLine(" * @date " + getDateString());
+        innerClass.addJavaDocLine(" */");
     }
 
     /**
@@ -266,10 +266,12 @@ public class GeneratorConfig implements CommentGenerator {
         method.addJavaDocLine("/**");
 
         // 这里和阿里巴巴的Java规范插件有点冲突，所以就去掉 @Description描述，否则会有警告
-        method.addJavaDocLine(" * " + introspectedTable.getRemarks() + "  " + method.getName() + " 实现");
+        method.addJavaDocLine(" * " + introspectedTable.getRemarks() + " " + method.getName() + " 实现");
         method.addJavaDocLine(" * ");
-        method.addJavaDocLine(" * @param " + method.getParameters().get(0).getName());
-        method.addJavaDocLine(" * @return null " + method.getReturnType());
+        for (Parameter parameter : method.getParameters()) {
+            method.addJavaDocLine(" * @param " + parameter.getName() + " {@link " + parameter.getType() + "}");
+        }
+        method.addJavaDocLine(" * @return " + method.getReturnType());
         try {
             method.addJavaDocLine(" * @author " + InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
@@ -300,7 +302,7 @@ public class GeneratorConfig implements CommentGenerator {
         if (!generatorEntity.isSuppressAllComments()) {
             xmlElement.addElement(new TextElement("<!--"));
             StringBuilder sb = new StringBuilder();
-            sb.append(xmlElement.getName()).append("语句操作").append("\n");
+            sb.append(xmlElement.getName()).append(" 语句操作 ").append("\n");
             try {
                 sb.append(" 作者： ").append(InetAddress.getLocalHost().getHostName());
             } catch (UnknownHostException e) {
@@ -322,7 +324,6 @@ public class GeneratorConfig implements CommentGenerator {
      */
     @Override
     public void addRootComment(XmlElement xmlElement) {
-
     }
 
     @Override
