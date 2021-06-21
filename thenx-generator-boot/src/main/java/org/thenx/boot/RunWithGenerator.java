@@ -28,7 +28,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * @author wales
+ * @author wales 
  * <p>
  * 单独启动 Generator
  */

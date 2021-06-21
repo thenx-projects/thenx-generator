@@ -106,16 +106,16 @@ public class AnnotationConfig extends PluginAdapter {
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         interfaze.addJavaDocLine("/**");
-        interfaze.addJavaDocLine("* 表" + introspectedTable.getFullyQualifiedTable() +
-                " -> " + introspectedTable.getRemarks() + " 的基本功能实现");
-        interfaze.addJavaDocLine("*");
+        interfaze.addJavaDocLine(" * 表 " + introspectedTable.getFullyQualifiedTable() +
+                introspectedTable.getRemarks() + " 的基本功能实现");
+        interfaze.addJavaDocLine(" *");
         try {
-            interfaze.addJavaDocLine("* @author " + InetAddress.getLocalHost().getHostName());
+            interfaze.addJavaDocLine(" * @author " + InetAddress.getLocalHost().getHostName());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        interfaze.addJavaDocLine("* @date " + date2Str(Calendar.getInstance().getTime()));
-        interfaze.addJavaDocLine("*/");
+        interfaze.addJavaDocLine(" * @date " + date2Str(Calendar.getInstance().getTime()));
+        interfaze.addJavaDocLine(" */");
         return true;
     }
 
