@@ -28,22 +28,26 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * @author wales 
+ * @author wales
  * <p>
  * 单独启动 Generator
  */
-public class RunWithGenerator {
+public class GeneratorBoot {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("确认不是重复执行（重新执行前记得clean一下maven） -> 输入 Y 立刻执行；输入 N 取消执行：");
         if (scanner.hasNextLine()) {
             String str2 = scanner.nextLine();
             if ("Y".equals(str2)) {
-                RunWithGenerator app = new RunWithGenerator();
+                GeneratorBoot app = new GeneratorBoot();
                 System.out.println(Objects.requireNonNull(app.getClass().getResource("/")).getPath());
-                app.generator();
+                try {
+                    app.generator();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println("===> " + System.getProperty("user.dir"));
             } else {
                 System.out.println("已取消执行 !");
