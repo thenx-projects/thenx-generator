@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.20</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
@@ -111,7 +111,7 @@
                                     <artifact>*:*</artifact>
                                     <excludes>
                                         <exclude>**/*.yml</exclude>
-<!--                                        <exclude>**/generator.properties</exclude>-->
+                                        <!--                                        <exclude>**/generator.properties</exclude>-->
                                         <exclude>thenx-generator-tests</exclude>
                                     </excludes>
                                 </filter>
