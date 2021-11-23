@@ -18,10 +18,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.thenx</groupId>
+    <groupId>org.thenx.projects</groupId>
     <artifactId>thenx-generator</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
         <module>thenx-generator-config</module>
         <module>thenx-generator-plugins</module>
@@ -29,32 +29,20 @@
         <module>thenx-generator-tests</module>
     </modules>
     <name>thenx-generator</name>
-    <description>快速生成 Entity、Mapper、SQL等通用型操作</description>
+    <description>Building a fast development platform framework for the data persistence layer based on MyBatis Gernerator</description>
 
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <!--    <repositories>-->
-    <!--        <repository>-->
-    <!--            <id>aliyun</id>-->
-    <!--            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-    <!--            <releases>-->
-    <!--                <enabled>true</enabled>-->
-    <!--            </releases>-->
-    <!--            <snapshots>-->
-    <!--                <enabled>true</enabled>-->
-    <!--            </snapshots>-->
-    <!--        </repository>-->
-    <!--    </repositories>-->
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.22</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
@@ -62,65 +50,26 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.thenx</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>thenx-generator-boot</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.thenx</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>thenx-generator-config</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.thenx</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>thenx-generator-plugins</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.thenx</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>thenx-generator-tests</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.thenx.boot.GeneratorBoot</mainClass>
-                                </transformer>
-                            </transformers>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>**/*.yml</exclude>
-                                        <!--                                        <exclude>**/generator.properties</exclude>-->
-                                        <exclude>thenx-generator-tests</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
