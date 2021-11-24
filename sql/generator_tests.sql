@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-create table generator_tests
+create table generator_table_test
 (
     id              varchar(100)                                          not null comment '主键ID'
         primary key,

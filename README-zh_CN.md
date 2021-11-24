@@ -22,14 +22,48 @@ Thenx Generator 是基于 [MyBatis Generator (MBG) ](https://github.com/mybatis/
 如下是基于 Maven 的依赖引入：
 
 ```xml
-           <dependency>
-                <groupId>org.thenx</groupId>
-                <artifactId>thenx-generator-boot</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
+<dependency>
+  <groupId>org.thenx.projects</groupId>
+  <artifactId>thenx-generator-boot</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
 
-依赖引入后可在 **resources** 目录下建立 **generator.properties** 配置文件来让 Thenx Generator 运行起来：
+依赖引入后可在 **resources** 目录下建立 **generator.properties** 配置文件来让 Thenx Generator 运行起来，这里我们分成 **多模块项目** 和 **单体项目** 来进行配置，可各取所需。
+
+### 多模块项目配置
+
+对于多模块项目，我们只需要分别在 **entity**、**dao**、**mapper** 三层 **package** 路径中添加模块前缀即可，如下，需要将生成的代码导出到 **thenx-generator-tests** 模块:
+
+```properties
+# 1. db info
+thenx.driver= com.mysql.cj.jdbc.Driver
+thenx.url= jdbc:mysql://localhost:63306/generator_db?useUnicode=true&characterEncoding=utf8
+thenx.username= generator_user
+thenx.password= 123456789
+
+# 2. jdbc -connector libs/*.jar
+thenx.target.connector= libs/mysql-connector-java-8.0.15.jar
+
+# 3. table name
+thenx.target.table= generator_tests
+
+# 4. entity - 将 entity 代码导出至 thenx-generator-tests 模块
+thenx.entity.project= thenx-generator-tests/src/main/java
+thenx.entity.package= org.thenx.entity
+
+# 5. dao - 将 dao 代码导出至 thenx-generator-tests 模块
+thenx.dao.project= thenx-generator-tests/src/main/java
+thenx.dao.package= org.thenx.dao
+
+# 6. mapper - 将 mapper 代码代码导出至 thenx-generator-tests 模块
+thenx.mapper.project= thenx-generator-tests/src/main/resources
+thenx.mapper.package= mapper
+```
+
+### 单体项目配置
+
+对于单体项目，我们相比于多模块项目，仅仅只是去掉模块前缀，仅此而已，配置代码如下：
 
 ```properties
 # 1. db info
@@ -45,17 +79,39 @@ thenx.target.connector= libs/mysql-connector-java-8.0.15.jar
 thenx.target.table= generator_tests
 
 # 4. entity
+thenx.entity.project= src/main/java
 thenx.entity.package= org.thenx.entity
-thenx.entity.project= thenx-generator-tests/src/main/java
 
 # 5. dao
+thenx.dao.project= src/main/java
 thenx.dao.package= org.thenx.dao
-thenx.dao.project= thenx-generator-tests/src/main/java
 
 # 6. mapper
+thenx.mapper.project= src/main/resources
 thenx.mapper.package= mapper
-thenx.mapper.project= thenx-generator-tests/src/main/resources
 ```
+
+### 小事项
+
+如果您是基于 Spring Boot 系列的框架式开发，别忘记在启动类上加上 DAO 的注解扫描哦：
+
+```java
+/**
+ * @author Thenx Generator
+ * 
+ * 不要忘记加上 @MapperScan
+ */
+@MapperScan({"org.thenx.projects.dao.**"})
+@SpringBootApplication
+public class ThenxGeneratorVerifyApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ThenxGeneratorVerifyApplication.class, args);
+    }
+
+}
+```
+
 
 ------
 
