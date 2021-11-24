@@ -20,8 +20,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>thenx-generator</artifactId>
-        <groupId>org.thenx</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.thenx.projects</groupId>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.22</version>
+            <version>8.0.25</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -48,7 +48,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.thenx</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>thenx-generator-tests</artifactId>
             <scope>compile</scope>
         </dependency>

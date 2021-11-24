@@ -1,6 +1,8 @@
 # <img src="./doc/thenx.png" width="80" height="80"> Thenx Generator
 
 ------
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.thenx.projects/thenx-generator-boot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.thenx.projects/thenx-generator-boot)
+
 English | [简体中文](./README-zh_CN.md)
 
 The Thenx Generator is a more convenient general-purpose data interface generation platform based on the [MyBatis Generator (MBG) ](https://github.com/mybatis/generator). Compared with the traditional MyBatis Generator project, it is more than three times more efficient, and the portability, maintainability and decoupling of the platform project are improved by the way of extensions, so that the developers can write business code more focused.
