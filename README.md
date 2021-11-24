@@ -24,11 +24,11 @@ Thenx Generator dependencies can be introduced in the form of standalone Jar pac
 The following are the Maven -based dependencies:
 
 ```xml
-           <dependency>
-                <groupId>org.thenx</groupId>
-                <artifactId>thenx-generator-boot</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
+<dependency>
+    <groupId>org.thenx.projects</groupId>
+    <artifactId>thenx-generator-boot</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 You can create a **generator.properties** configuration file in the **resources directory** to get the Thenx Generator up and running. Here we have a **multi-module project** and a **singleton project** to configure it, each for its own needs.
