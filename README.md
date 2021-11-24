@@ -31,7 +31,38 @@ The following are the Maven -based dependencies:
             </dependency>
 ```
 
-Dependencies can be introduced to create **generator.properties** profiles in the **resources directory** to get the Thenx Generator running:
+You can create a **generator.properties** configuration file in the **resources directory** to get the Thenx Generator up and running. Here we have a **multi-module project** and a **singleton project** to configure it, each for its own needs.
+
+### Multi-module project configuration
+
+```properties
+# 1. db info
+thenx.driver= com.mysql.cj.jdbc.Driver
+thenx.url= jdbc:mysql://localhost:63306/generator_db?useUnicode=true&characterEncoding=utf8
+thenx.username= generator_user
+thenx.password= 123456789
+
+# 2. jdbc -connector libs/*.jar
+thenx.target.connector= libs/mysql-connector-java-8.0.15.jar
+
+# 3. table name
+thenx.target.table= generator_tests
+
+# 4. entity - Export entity code to the thenx-generator-tests module
+thenx.entity.project= thenx-generator-tests/src/main/java
+thenx.entity.package= org.thenx.entity
+
+# 5. dao - Export dao code to the thenx-generator-tests module
+thenx.dao.project= thenx-generator-tests/src/main/java
+thenx.dao.package= org.thenx.dao
+
+# 6. mapper - Export Mapper code to the thenx-generator-tests module
+thenx.mapper.project= thenx-generator-tests/src/main/resources
+thenx.mapper.package= mapper
+```
+### Individual project configuration
+
+For a singleton project, we simply removed the module prefix, as opposed to a multimodule project, and the configuration code was as follows:
 
 ```properties
 # 1. db info
@@ -47,16 +78,36 @@ thenx.target.connector= libs/mysql-connector-java-8.0.15.jar
 thenx.target.table= generator_tests
 
 # 4. entity
+thenx.entity.project= src/main/java
 thenx.entity.package= org.thenx.entity
-thenx.entity.project= thenx-generator-tests/src/main/java
 
 # 5. dao
+thenx.dao.project= src/main/java
 thenx.dao.package= org.thenx.dao
-thenx.dao.project= thenx-generator-tests/src/main/java
 
 # 6. mapper
+thenx.mapper.project= src/main/resources
 thenx.mapper.package= mapper
-thenx.mapper.project= thenx-generator-tests/src/main/resources
+```
+
+### Cautions
+If you're developing frame-based on the Spring Boot family, don't forget to add a DAO annotation scan to your boot class:
+
+```java
+/**
+ * @author Thenx Generator
+ * 
+ * Don't forget to add @ MapperScan
+ */
+@MapperScan({"org.thenx.projects.dao.**"})
+@SpringBootApplication
+public class ThenxGeneratorVerifyApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ThenxGeneratorVerifyApplication.class, args);
+    }
+
+}
 ```
 
 ------
