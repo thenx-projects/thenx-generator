@@ -1,5 +1,6 @@
 # 更新 gitignore
 
+*.versionsBackup
 *.java.hsp
 *.sonarj
 *.sw*

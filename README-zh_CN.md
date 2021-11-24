@@ -1,5 +1,8 @@
 # <img src="./doc/thenx.png" width="80" height="80"> Thenx Generator
 
+------
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.thenx.projects/thenx-generator-boot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.thenx.projects/thenx-generator-boot)
+
 Thenx Generator 是基于 [MyBatis Generator (MBG) ](https://github.com/mybatis/generator)的一款更为便捷的通用数据接口生成平台项目。相比于传统的 MyBatis Generator 项目更是提高了三倍以上的开发效率，并通过扩展插件的方式来提高平台项目的可移植性、可维护性、可解耦性等优势，使得开发者能更为专注的编写业务代码。
 
 您可以直接引入 Thenx Generator 依赖来完成数据接口的生成，仅仅只需要配置您所使用的数据库相关信息、类路径、Mapper 路径即可。
