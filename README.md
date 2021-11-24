@@ -35,6 +35,8 @@ You can create a **generator.properties** configuration file in the **resources 
 
 ### Multi-module project configuration
 
+For a multi-module project, we just need to add the module prefix to the **entity**, **dao**, and **mapper** package paths, as follows, and export the generated code to the **thenx-generator-tests** module:
+
 ```properties
 # 1. db info
 thenx.driver= com.mysql.cj.jdbc.Driver
